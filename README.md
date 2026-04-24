@@ -64,7 +64,22 @@ git clone https://github.com/dikshantahlawat/B.Tech_Project.git
 cd B.Tech_Project
 ```
 
-## 2) Run Backend (FastAPI)
+## 2) Fastest Demo Start (Windows)
+
+If you want to show it quickly to your teacher, use the one-click launcher:
+
+1. Double-click `start_all.bat` from the repository root.
+2. It opens two terminals automatically:
+	- Backend on `http://127.0.0.1:8000`
+	- Frontend on `http://127.0.0.1:5173`
+3. Open the app in browser: `http://127.0.0.1:5173`
+
+You can also launch each side separately:
+
+- `start_backend.bat`
+- `start_frontend.bat`
+
+## 3) Run Backend (FastAPI)
 
 Open terminal 1:
 
@@ -115,7 +130,7 @@ Note:
 
 - On first startup, the backend auto-trains and saves a RandomForest model from `backend/data/Crop_recommendation.csv` if no saved model is found.
 
-## 3) Run Frontend (React + Vite)
+## 4) Run Frontend (React + Vite)
 
 Open terminal 2:
 
@@ -140,7 +155,7 @@ Open:
 
 - `http://127.0.0.1:5173`
 
-## 4) Use the Web App
+## 5) Use the Web App
 
 1. Enter values for N, P, K, temperature, humidity, ph, and rainfall.
 2. Click `Get Recommendation`.
@@ -148,7 +163,7 @@ Open:
 	 - Best crop
 	 - Top 3 crops with confidence bars
 
-## 5) Notebook
+## 6) Notebook
 
 Notebook is included at:
 

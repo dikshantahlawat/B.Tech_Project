@@ -3,23 +3,23 @@ import { useMemo, useState } from 'react';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
 
 const initialForm = {
-  N: 90,
-  P: 42,
-  K: 43,
-  temperature: 20.8,
-  humidity: 82,
-  ph: 6.5,
-  rainfall: 202,
+  N: '',
+  P: '',
+  K: '',
+  temperature: '',
+  humidity: '',
+  ph: '',
+  rainfall: '',
 };
 
 const fields = [
-  { key: 'N', label: 'Nitrogen (N)', min: 0, max: 200, step: '0.1' },
-  { key: 'P', label: 'Phosphorus (P)', min: 0, max: 200, step: '0.1' },
-  { key: 'K', label: 'Potassium (K)', min: 0, max: 250, step: '0.1' },
-  { key: 'temperature', label: 'Temperature (degC)', min: -10, max: 60, step: '0.1' },
-  { key: 'humidity', label: 'Humidity (%)', min: 0, max: 100, step: '0.1' },
-  { key: 'ph', label: 'pH', min: 0, max: 14, step: '0.1' },
-  { key: 'rainfall', label: 'Rainfall (mm)', min: 0, max: 500, step: '0.1' },
+  { key: 'N', label: 'Nitrogen (N)', placeholder: 'Enter N level', min: 0, max: 200, step: '0.1' },
+  { key: 'P', label: 'Phosphorus (P)', placeholder: 'Enter P level', min: 0, max: 200, step: '0.1' },
+  { key: 'K', label: 'Potassium (K)', placeholder: 'Enter K level', min: 0, max: 250, step: '0.1' },
+  { key: 'temperature', label: 'Temperature (degC)', placeholder: 'Enter temperature', min: -10, max: 60, step: '0.1' },
+  { key: 'humidity', label: 'Humidity (%)', placeholder: 'Enter humidity', min: 0, max: 100, step: '0.1' },
+  { key: 'ph', label: 'pH', placeholder: 'Enter ph level', min: 0, max: 14, step: '0.1' },
+  { key: 'rainfall', label: 'Rainfall (mm)', placeholder: 'Enter rainfall', min: 0, max: 500, step: '0.1' },
 ];
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
   }, [result]);
 
   const onChange = (key, value) => {
-    setForm((prev) => ({ ...prev, [key]: Number(value) }));
+    setForm((prev) => ({ ...prev, [key]: value }));
   };
 
   const onSubmit = async (e) => {
@@ -44,10 +44,14 @@ function App() {
     setResult(null);
 
     try {
+      const payload = Object.fromEntries(
+        Object.entries(form).map(([key, value]) => [key, Number(value)])
+      );
+
       const res = await fetch(`${API_BASE_URL}/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
@@ -76,8 +80,8 @@ function App() {
       <div className="bg-orb orb-2" />
       <main className="layout">
         <section className="panel hero">
-          <p className="eyebrow">B.Tech Major Project</p>
-          <h1>Smart Crop Recommendation</h1>
+          <p className="eyebrow">Hybrid Farm Support System</p>
+          <h1>Hybrid Farm Support System</h1>
           <p className="subtitle">
             Enter soil nutrients and weather values to get the best crop suggestion from your trained ML model.
           </p>
@@ -94,6 +98,7 @@ function App() {
                   min={field.min}
                   max={field.max}
                   step={field.step}
+                  placeholder={field.placeholder}
                   value={form[field.key]}
                   onChange={(e) => onChange(field.key, e.target.value)}
                   required

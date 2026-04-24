@@ -1,6 +1,6 @@
-# Smart Crop Recommendation - B.Tech Project
+# Hybrid Farm Support System
 
-This repository contains a complete full-stack crop recommendation system:
+This repository contains a complete full-stack crop recommendation system for the Hybrid Farm Support System:
 
 - A machine learning notebook and dataset
 - A FastAPI backend that predicts crops from soil/weather inputs
@@ -24,7 +24,7 @@ And returns:
 ## Repository Structure
 
 ```text
-B.Tech_Project/
+Hybrid Farm Support System/
 |-- backend/
 |   |-- app/
 |   |   |-- main.py
